@@ -2,6 +2,11 @@
 ✅ **This template must be reviewed and updated before merging new features.**
 
 ---
+### Source documentation
+Any original research paper, website, book.. to know as a pre-requisite for this work
+* TBD
+
+---
 ### Framework Stack
 
 * **Language & version**: `TBD` (e.g., Go 1.24, Python 3.13, Java 21).
