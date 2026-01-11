@@ -11,6 +11,7 @@ Reviewers and automation should evaluate new pull requests against the principle
 ## 2. Follow idiomatic Go style
 
 - Follow Effective Go and the standard library for naming, error handling, and control flow; avoid importing patterns from other languages.
+- Less code is better.
 - Enforce `gofmt`, `go vet`, and a linter (eg: docker image at golangci/golangci-lint:latest-alpine) in CI so style is consistent and not debated during review.
 
 ## 3. Prefer small, cohesive APIs
@@ -85,9 +86,12 @@ Reviewers and automation should evaluate new pull requests against the principle
 - Support safe rollouts and quick rollbacks so new Go changes can be deployed frequently with low operational risk.
 - Use git stash or commits to help me rollback between your major changes
 
+## 17. Security
+
+- Validate proposed code against defensive coding principles and OWASP top 10 (https://owasp.org/Top10/2025/0x00_2025-Introduction/).
+
 ***
 
 Extra references: 
 
-- https://go.dev/doc/effective_go
 - https://go-proverbs.github.io/
