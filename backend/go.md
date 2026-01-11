@@ -11,7 +11,7 @@ Reviewers and automation should evaluate new pull requests against the principle
 ## 2. Follow idiomatic Go style
 
 - Follow Effective Go and the standard library for naming, error handling, and control flow; avoid importing patterns from other languages.
-- Enforce `gofmt`, `go vet`, and a linter in CI so style is consistent and not debated during review.
+- Enforce `gofmt`, `go vet`, and a linter (eg: docker image at golangci/golangci-lint:latest-alpine) in CI so style is consistent and not debated during review.
 
 ## 3. Prefer small, cohesive APIs
 
@@ -40,8 +40,9 @@ Reviewers and automation should evaluate new pull requests against the principle
 
 ## 8. Write fast, deterministic tests (including concurrency)
 
-- Keep tests small, fast, and deterministic; avoid `time.Sleep` for synchronization in concurrent tests.
-- Structure tests so they can run reliably in CI, without depending on timing or external state.
+- Keep tests small, fast, parallel and deterministic;
+- Structure tests so they can run reliably in CI, without depending on timing or external state;
+- Use property based tests and behavior based tests, don't test only functions "blindly".
 
 ## 9. Run the race detector and fix races
 
@@ -65,7 +66,7 @@ Reviewers and automation should evaluate new pull requests against the principle
 
 ## 13. Use Go 1.25 features deliberately
 
-- Treat new or experimental features in Go 1.25 (for example, newer runtime or library behavior) as opt‑in and roll them out gradually.
+- Treat new or experimental features in Go 1.25 (https://go.dev/doc/go1.25) as opt‑in and roll them out gradually.
 - Track and apply Go 1.25 patch releases to benefit from bug fixes and security updates in the runtime and standard library.
 
 ## 14. Externalize configuration and protect secrets
@@ -73,10 +74,16 @@ Reviewers and automation should evaluate new pull requests against the principle
 - Keep configuration in environment variables or configuration files, not hard‑coded constants.
 - Store secrets in dedicated secret‑management systems and never commit them to the repository.
 
-## 15. Automate deployment, health checks, and rollbacks
+## 15. Automate development workflow with Makefile
+
+- Centralize workflow in a Makefile. Use these Makefile targets from the GitHub actions too.
+- Use docker images instead of binaries wherever possible.
+
+## 16. Automate deployment, health checks, and rollbacks
 
 - Provide health and readiness endpoints and ensure they accurately reflect service status.
 - Support safe rollouts and quick rollbacks so new Go changes can be deployed frequently with low operational risk.
+- Use git stash or commits to help me rollback between your major changes
 
 ***
 
